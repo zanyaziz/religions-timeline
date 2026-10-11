@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Religions Timeline — how the world's religions arose in parallel</title>
+<meta name="description" content="An interactive, open-source timeline showing how major religious traditions arose in parallel — their earliest texts, shared ideas, and honest dating.">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <h1>Religions Timeline</h1>
+      <p class="tagline">How the world's religions arose — in parallel, c. 2600–500 BCE</p>
+    </div>
+    <div class="controls" role="toolbar" aria-label="Timeline controls">
+      <div class="view-toggle" role="group" aria-label="View">
+        <button data-view="texts" class="active" title="Show sacred texts as date-range bars">Texts</button>
+        <button data-view="ideas" title="Show shared ideas connecting across traditions">Ideas</button>
+        <button data-view="both" title="Show both">Both</button>
+      </div>
+      <select id="idea-filter" aria-label="Filter by idea">
+        <option value="all">All ideas</option>
+      </select>
+      <input id="search" type="search" placeholder="Search texts, ideas…" aria-label="Search">
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="timeline-wrap">
+    <div id="timeline" class="timeline-scroll"></div>
+    <div id="legend" class="legend"></div>
+    <p class="dating-note">
+      Bars span each text's <strong>scholarly date range</strong> — the shading <em>is</em> the uncertainty.
+      Click any bar for details and sources. Dates marked <em>approximate</em> or <em>disputed</em> are
+      honestly uncertain; nothing here is presented as settled that isn't.
+    </p>
+  </section>
+  <aside id="detail" class="detail" aria-live="polite">
+    <div class="detail-empty">Click a text on the timeline to see its description, ideas, and scholarly source.</div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <p>
+    Open source (MIT) — <a href="https://github.com/zanyaziz/religions-timeline">contribute on GitHub</a>.
+    v1 covers five traditions; Judaism, Christianity, Buddhism, and Islam tracks are planned next.
+  </p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
