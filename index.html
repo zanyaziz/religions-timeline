@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Religions Timeline — how the world's religions arose in parallel</title>
-<meta name="description" content="An interactive, open-source timeline showing how major religious traditions arose in parallel — their earliest texts, shared ideas, and honest dating.">
+<meta name="description" content="An interactive, open-source timeline showing how major religious traditions arose in parallel — from Sumer and Egypt to Judaism, Hinduism, Buddhism, Christianity, Islam, and more — with shared ideas and honest dating.">
 <link rel="stylesheet" href="css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 </head>
@@ -13,7 +13,7 @@
   <div class="header-inner">
     <div class="brand">
       <h1>Religions Timeline</h1>
-      <p class="tagline">How the world's religions arose — in parallel, c. 2600–500 BCE</p>
+      <p class="tagline">How the world's religions arose — in parallel, c. 2600 BCE – 2000 CE</p>
     </div>
     <div class="controls" role="toolbar" aria-label="Timeline controls">
       <div class="view-toggle" role="group" aria-label="View">
@@ -29,12 +29,35 @@
   </div>
 </header>
 
+<nav class="era-bar" aria-label="Era shortcuts and zoom">
+  <div class="era-inner">
+    <div class="era-tabs" role="group" aria-label="Jump to an era">
+      <button class="era-tab" data-from="-2600" data-to="2000">Full span</button>
+      <button class="era-tab" data-from="-2600" data-to="-500">Ancient world</button>
+      <button class="era-tab" data-from="-800" data-to="200">Axial age</button>
+      <button class="era-tab" data-from="1" data-to="1000">Common era</button>
+      <button class="era-tab" data-from="500" data-to="1500">Medieval</button>
+      <button class="era-tab" data-from="1500" data-to="2000">Modern</button>
+    </div>
+    <div class="zoom-controls" role="group" aria-label="Zoom">
+      <button id="zoom-out" title="Zoom out">−</button>
+      <button id="zoom-reset" title="Reset view to the full span">Reset</button>
+      <button id="zoom-in" title="Zoom in">+</button>
+    </div>
+  </div>
+</nav>
+
 <main class="layout">
   <section class="timeline-wrap">
-    <div id="timeline" class="timeline-scroll"></div>
+    <div id="timeline" class="timeline-scroll">
+      <div id="tl-main"></div>
+      <div id="tl-mini"></div>
+    </div>
     <div id="legend" class="legend"></div>
     <p class="dating-note">
-      Bars span each text's <strong>scholarly date range</strong> — the shading <em>is</em> the uncertainty.
+      <strong>Slide the timeline:</strong> drag to pan, scroll to zoom, double-click to zoom in,
+      or jump with the era tabs and the overview window.
+      Bars span each text's or event's <strong>scholarly date range</strong> — the shading <em>is</em> the uncertainty.
       Click any bar for details and sources. Dates marked <em>approximate</em> or <em>disputed</em> are
       honestly uncertain; nothing here is presented as settled that isn't.
     </p>
@@ -47,7 +70,8 @@
 <footer class="site-footer">
   <p>
     Open source (MIT) — <a href="https://github.com/zanyaziz/religions-timeline">contribute on GitHub</a>.
-    v1 covers five traditions; Judaism, Christianity, Buddhism, and Islam tracks are planned next.
+    v2 spans ten traditions from 2600 BCE to 2000 CE: Sumerian and Egyptian religion, Zoroastrianism,
+    Judaism, the Vedic tradition and Hinduism, Buddhism, Jainism, Chinese traditions, Christianity, and Islam.
   </p>
 </footer>
 

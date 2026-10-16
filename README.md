@@ -6,14 +6,21 @@ scholarly dating (uncertainty included, not hidden).
 
 **Live:** https://zanyaziz.github.io/religions-timeline/
 
-v1 covers five traditions across c. 2600–500 BCE: Sumerian religion, Ancient Egyptian
-religion, the Vedic tradition, ancient Chinese folk religion, and Zoroastrianism.
+v2 covers **ten traditions across c. 2600 BCE – 2000 CE**: Sumerian religion, Ancient
+Egyptian religion, Zoroastrianism, Judaism, the Vedic tradition and Hinduism, Buddhism,
+Jainism, Chinese traditions, Christianity, and Islam.
+
+(v1 covered five traditions across c. 2600–500 BCE.)
 
 ## What you can do
 
-- **Texts view** — each sacred text is a bar spanning its scholarly date range.
-  The shading *is* the uncertainty: wide bar = wide date range.
-- **Ideas view** — idea tags (e.g. *cosmic order*, *judgment*, *afterlife*) connect
+- **Slide the timeline** — drag to pan across 4,600 years, scroll or use the +/−
+  buttons to zoom, double-click to zoom in, drag the window on the **overview
+  minimap**, or jump with the **era tabs**: Full span · Ancient world · Axial age ·
+  Common era · Medieval · Modern.
+- **Texts view** — each sacred text or event is a bar spanning its scholarly date
+  range. The shading *is* the uncertainty: wide bar = wide date range.
+- **Ideas view** — idea tags (e.g. *cosmic order*, *judgment*, *liberation*) connect
   across traditions with colored lines, so you can see the same concept surface
   independently in different places and times.
 - **Both** — bars plus idea connections.
@@ -44,22 +51,31 @@ data/
                     #   scholarly source, and either an imported file or external link
   sumerian.json     # one file per tradition, loaded individually
   egyptian.json
-  vedic.json
-  chinese.json
   zoroastrian.json
+  judaism.json
+  vedic.json        # the Vedic track, extended forward into Hinduism
+  buddhism.json
+  jainism.json
+  chinese.json      # extended forward: Confucianism, Daoism, modern China
+  christianity.json
+  islam.json
   texts/            # optional imported public-domain texts (data/texts/<id>.txt)
   _template.json    # copy this to add a tradition
 ```
 
 - `data/index.json` lists traditions with `{id, name, region, color, file}`.
 - Each tradition file holds `events[]`; each event references a `text_id` from the
-  registry and carries its own `year_from`/`year_to` (BCE, older first),
-  `certainty` (`well-attested` | `approximate` | `disputed`), a description,
-  and free-form `ideas[]` tags.
+  registry and carries its own `year_from`/`year_to`, `certainty`
+  (`well-attested` | `approximate` | `disputed`), a description, and free-form
+  `ideas[]` tags.
+- **Years are signed: negative = BCE, positive = CE** (e.g. `-1500` = 1500 BCE,
+  `70` = 70 CE), and `year_from < year_to`. (v1 used unsigned BCE years; v2
+  migrated the data so tracks can cross the BCE/CE boundary.)
 - The registry entry holds the canonical `{id, title, date_range: {from, to, era,
   certainty, note}, what, source_label, source_url}` plus
   `content: {kind: "import", path: "data/texts/<id>.txt"}` for short public-domain
   texts kept in the repo, or `{kind: "link", url, label}` for large/external texts.
+  Texts are referenced and linked, never reproduced wholesale.
 
 ### Add a tradition
 
@@ -71,18 +87,42 @@ data/
 ## Scholarly standards
 
 - Every text links to a credible source: university projects (Oxford ETCSL, UCL
-  Digital Egypt, Indiana University), the Internet Sacred Text Archive's
-  public-domain scholarly translations, Smarthistory, or peer-reviewed work.
+  Digital Egypt, Indiana University, Yale's Avalon Project), the Internet Sacred
+  Text Archive's public-domain scholarly translations, Sefaria, Access to Insight,
+  Smarthistory, or peer-reviewed work.
 - Dating honesty is a feature: `approximate` and `disputed` dates are labeled in
   the UI, with notes explaining *why* they're uncertain.
 - Never present a disputed date as settled. If new scholarship moves a date,
   update the registry — the UI follows automatically.
 
+## Notes on the v2 expansion
+
+- **Hinduism** is not a separate track: the *Vedic tradition & Hinduism* track
+  (`data/vedic.json`) continues the same file forward — Upanishads, the Sanskrit
+  epics and the Bhagavad Gita, Puranic/temple Hinduism, bhakti movements, Shankara,
+  and modern reform — because historically it is one continuous tradition.
+- **Chinese traditions** (`data/chinese.json`) likewise continues the Shang/Zhou
+  track forward through Confucius and the Analects, the Tao Te Ching, Mencius,
+  Han state Confucianism, Zhu Xi's Neo-Confucian synthesis, and the modern period.
+- **Zoroastrianism** gains two forward events: the Sasanian codification of the
+  Avesta and the Parsi migration to India.
+- New tracks were populated with standard scholarly reference points: for Judaism,
+  the exile and Second Temple period, the Mishnah (c. 200 CE) and Babylonian
+  Talmud (c. 450–600 CE); for Christianity, the councils, the Great Schism (1054),
+  and the Reformation (1517); for Islam, the Uthmanic recension of the Quran, the
+  hadith collections (c. 870), and the Ottoman period; for Buddhism, Ashoka, the
+  writing-down of the Pali Canon, and the spread to China, Tibet, Japan, and the
+  West; for Jainism, Parshvanatha and Mahavira (both honestly marked *disputed*),
+  the Digambara–Shvetambara split, and the Valabhi canon. Contested dates —
+  the Exodus, the life of the Buddha, the dates of Zarathustra and Mahavira —
+  are shown as wide ranges with explanatory notes, not single years.
+
 ## Roadmap
 
-- More tracks: Judaism, Christianity, Buddhism, Islam (and their early texts).
 - A political-order overlay: the empires and kingdoms contemporary with each text.
 - Per-idea deep pages and richer text excerpts where public-domain translations exist.
+- More tracks and denser coverage within tracks (v2 has ~8–13 anchor events per
+  new tradition — a skeleton, not a census).
 
 ## License
 
