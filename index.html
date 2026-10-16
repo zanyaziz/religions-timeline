@@ -27,6 +27,10 @@
       <input id="search" type="search" placeholder="Search texts, ideas…" aria-label="Search">
     </div>
   </div>
+  <div class="app-tabs" role="tablist" aria-label="App views">
+    <button class="app-tab active" data-tab="timeline" role="tab" aria-selected="true">Timeline</button>
+    <button class="app-tab" data-tab="ideamap" role="tab" aria-selected="false">Idea Map</button>
+  </div>
 </header>
 
 <nav class="era-bar" aria-label="Era shortcuts and zoom">
@@ -47,16 +51,24 @@
   </div>
 </nav>
 
-<main class="layout">
+<main class="layout" id="view-timeline">
   <section class="timeline-wrap">
     <div id="timeline" class="timeline-scroll">
       <div id="tl-main"></div>
-      <div id="tl-mini"></div>
+    </div>
+    <div class="scroller" id="scroller">
+      <div class="scroller-head">
+        <span class="scroller-title">Time window</span>
+        <span class="scroller-range" id="scroller-range"></span>
+        <span class="scroller-hint">Drag the window to travel through time · drag its edges to zoom · tap outside it to jump</span>
+      </div>
+      <div id="scroller-svg"></div>
     </div>
     <div id="legend" class="legend"></div>
     <p class="dating-note">
       <strong>Slide the timeline:</strong> drag to pan, scroll to zoom, double-click to zoom in,
-      or jump with the era tabs and the overview window.
+      jump with the era tabs, or drag the <strong>time-window scroller</strong> below the chart.
+      Tracks and idea tags dim when they have nothing in the visible window.
       Bars span each text's or event's <strong>scholarly date range</strong> — the shading <em>is</em> the uncertainty.
       Click any bar for details and sources. Dates marked <em>approximate</em> or <em>disputed</em> are
       honestly uncertain; nothing here is presented as settled that isn't.
@@ -67,11 +79,37 @@
   </aside>
 </main>
 
+<main class="map-layout" id="view-ideamap" hidden>
+  <section class="map-card">
+    <div id="map-svg"></div>
+    <div class="map-scrub">
+      <button id="map-play" title="Play: watch the idea appear over time">▶ Play</button>
+      <input id="map-year" type="range" min="-2600" max="2000" step="10" value="2000" aria-label="Scrub through time">
+      <div id="map-year-label" class="map-year-label">2000 CE</div>
+    </div>
+    <p class="map-note">
+      <strong>Where this idea appears over time.</strong> A region lights up when the idea is first
+      attested there in the timeline data, and stays lit. This shows <em>attestation</em> — where and when a
+      concept is documented — <em>not</em> borrowing or influence. Dashed lines join regions in the order
+      they are first attested, to convey sequence only; no direction of transmission is claimed.
+      Schematic map — positions are approximate.
+    </p>
+  </section>
+  <aside class="map-side">
+    <label class="map-picker-label" for="map-idea">Choose an idea</label>
+    <select id="map-idea" aria-label="Choose an idea"></select>
+    <div id="map-info" class="map-info">Pick an idea, then scrub through time. Tap a region on the map for details.</div>
+    <h3 class="map-attest-h">First attested</h3>
+    <ul id="map-attest" class="map-attest"></ul>
+  </aside>
+</main>
+
 <footer class="site-footer">
   <p>
     Open source (MIT) — <a href="https://github.com/zanyaziz/religions-timeline">contribute on GitHub</a>.
     v2 spans ten traditions from 2600 BCE to 2000 CE: Sumerian and Egyptian religion, Zoroastrianism,
     Judaism, the Vedic tradition and Hinduism, Buddhism, Jainism, Chinese traditions, Christianity, and Islam.
+    Includes a time-window scroller and an Idea Map of where each idea is attested over time.
   </p>
 </footer>
 

@@ -15,9 +15,19 @@ Jainism, Chinese traditions, Christianity, and Islam.
 ## What you can do
 
 - **Slide the timeline** — drag to pan across 4,600 years, scroll or use the +/−
-  buttons to zoom, double-click to zoom in, drag the window on the **overview
-  minimap**, or jump with the **era tabs**: Full span · Ancient world · Axial age ·
-  Common era · Medieval · Modern.
+  buttons to zoom, double-click to zoom in, or jump with the **era tabs**:
+  Full span · Ancient world · Axial age · Common era · Medieval · Modern.
+- **Time-window scroller** — a full-span overview under the chart: drag the
+  window to travel through time, drag its edges to resize (zoom), or tap
+  outside it to jump. Events inside the window light up and outside it they
+  dim; tracks with nothing in the window fade back, and idea chips/filter
+  options only light up for ideas actually present in the visible slice.
+- **Idea Map tab** — pick an idea and scrub through time on a schematic world
+  map: each region lights up when the idea is *first attested* there in the
+  data. See the accuracy note below.
+- **Mobile-friendly** — responsive layout with touch drag on the chart and
+  the scroller, swipeable era tabs, and large tap targets throughout; the
+  detail panel stacks under the chart on narrow screens.
 - **Texts view** — each sacred text or event is a bar spanning its scholarly date
   range. The shading *is* the uncertainty: wide bar = wide date range.
 - **Ideas view** — idea tags (e.g. *cosmic order*, *judgment*, *liberation*) connect
@@ -63,7 +73,9 @@ data/
   _template.json    # copy this to add a tradition
 ```
 
-- `data/index.json` lists traditions with `{id, name, region, color, file}`.
+- `data/index.json` lists traditions with `{id, name, region, color, file}` plus a
+  `map: {x, y, label, lx, ly, anchor}` entry — the tradition's node position and
+  label placement on the Idea Map's schematic world map (viewBox 1000×460).
 - Each tradition file holds `events[]`; each event references a `text_id` from the
   registry and carries its own `year_from`/`year_to`, `certainty`
   (`well-attested` | `approximate` | `disputed`), a description, and free-form
@@ -106,6 +118,14 @@ data/
   Han state Confucianism, Zhu Xi's Neo-Confucian synthesis, and the modern period.
 - **Zoroastrianism** gains two forward events: the Sasanian codification of the
   Avesta and the Parsi migration to India.
+- **Idea Map accuracy rule:** the map shows *attestation* — where and when an
+  idea is documented in the timeline data — never asserted borrowing or
+  influence. A region lights at the start year of the earliest event carrying
+  the tag in that tradition. Dashed lines join lit regions in chronological
+  order of first attestation to convey sequence only; there are deliberately
+  **no directional arrows**, because the data does not by itself prove
+  transmission. Node positions come from the `map` entry per tradition in
+  `data/index.json`; landmasses are schematic.
 - New tracks were populated with standard scholarly reference points: for Judaism,
   the exile and Second Temple period, the Mishnah (c. 200 CE) and Babylonian
   Talmud (c. 450–600 CE); for Christianity, the councils, the Great Schism (1054),
